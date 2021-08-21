@@ -1,0 +1,24 @@
+body {
+    font-family: arial;
+    user-select: none;
+}
+
+
+table {
+    cursor: pointer;
+}
+th {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    font-size: 28px;
+    
+}
+
+#turn {
+    font-weight: 700;
+}
+
+.ghost {
+    color: #bebebe;
+}
