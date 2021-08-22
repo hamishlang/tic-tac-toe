@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //table printing
-    let columnsNum = $('#columns').val()
+    // let columnsNum = $('#columns').val()
     let rowsNum = $('#rows').val()
     let th = ''
     let tr = ''
@@ -12,7 +12,7 @@ $(document).ready(function () {
             th = ''
             tr += `<tr id="row${t}">`
             for (let i = 0; i < col; i++) {
-                let thUniq = `<th row="${t}" col="${i}"></th>`
+                let thUniq = `<th row="${t}" col="${i}" id="${t}-${i}"></th>`
                 th += thUniq
             }
             tr += th
@@ -73,6 +73,7 @@ $(document).ready(function () {
             } else if (xOrO === 'O') {
                 classMark(3, 'X')
             }
+            winChecker()
 
             // console.log(newMatrix)
         })
@@ -105,29 +106,58 @@ $(document).ready(function () {
 
     let x = 2
     let count = 0
-    $(' #checker ').on("click", function () {
+
+    let winChecker = () => {
         let winCount = rowsNum
         // console.log(winCount)
         let winCheckHor = 0
         let winCheckVer = 0
         let winCheckSE = 0
-
-
+        let winCheckNE = 0
+        // let j = 0
+        
+        
 
 
         for (let j = 0; j < newMatrix.length; j++) {
+            // let ix = 0
+            // function for color change horizontel 
+            let horWin = (player) => {
+                
+                for (let ix = 0; ix < newMatrix[j].length; ix++) {
+                    
+                    $(`#${j}-${ix}`).addClass('green')
+                    
+                }
+                console.log(`player ${player} wins!`)
+            }
+
+            let vertWin = (player) => {
+                for (let i2x = 0; i2x < rowsNum; i2x++) { 
+                    $(`#${i2x}-${j}`).addClass('green')
+                } 
+            }
+
 
 
             // horizontal checker
             for (let i = 0; i < newMatrix[j].length; i++) {
-
+                
                 if (newMatrix[j][i] === 2) {
                     winCheckHor += 1
 
+                    if (winCheckHor == winCount) {
+                        //PLAYER ONE WIN HOR
+                        horWin(1)
+                    } 
+
                 } else if (newMatrix[j][i] === 3) {
                     winCheckHor += 10
-                }
 
+                    if (winCheckHor == winCount * 10) {
+                        horWin(2)
+                    }
+                }
             }
             // vertical checker
             for (let i2 = 0; i2 < rowsNum; i2++) {
@@ -135,8 +165,17 @@ $(document).ready(function () {
                 if (newMatrix[i2][j] === 2) {
                     winCheckVer += 1
 
+
+                    if (winCheckVer == winCount) {
+                    vertWin(1)
+                }
+
                 } else if (newMatrix[i2][j] === 3) {
                     winCheckVer += 10
+
+                    if (winCheckVer == winCount * 10) {
+                        vertWin(2)
+                    }
                 }
             }
             // South East checker
@@ -149,29 +188,49 @@ $(document).ready(function () {
                     winCheckSE += 10
                 }
             }
-            // console.log(winCheck)
 
-            if (winCheckHor == winCount || winCheckVer == winCount || winCheckSE == winCount) {
-                console.log('player 1 wins')
-            } else if (winCheckHor === (winCount) * 10 || winCheckVer === (winCount) * 10 || winCheckSE === (winCount) * 10) {
-                console.log('player 2 wins')
+            // NORTH East checker
+            for (let i3 = 0; i3 < rowsNum; i3++) {
+                let northEast = rowsNum - 1
+                if (newMatrix[(northEast - i3)][i3] === 2) {
+                    winCheckNE += 1
+
+                } else if (newMatrix[(northEast - i3)][i3] === 3) {
+                    winCheckNE += 10
+                }
             }
-            console.log('Hor: ' + winCheckHor + ' Ver: ' + winCheckVer + ' SE: ' + winCheckSE + ' WINCOUNT' + winCount)
+            // console.log(winCheck)
+            // if (winCheckHor == winCount) {
 
+
+
+            // }
+            if (winCheckHor == winCount || winCheckVer == winCount || winCheckSE == winCount || winCheckNE == winCount) {
+                // console.log('player 1 wins')
+            } else if (winCheckHor === (winCount) * 10 || winCheckVer === (winCount) * 10 || winCheckSE === (winCount) * 10 || winCheckNE == (winCount) * 10) {
+                // console.log('player 2 wins')
+            }
+            // console.log('Hor: ' + winCheckHor + ' Ver: ' + winCheckVer + ' SE: ' + winCheckSE + ' WINCOUNT' + winCount)
+            // console.log('rowsNum' + rowsNum)
 
             winCheckHor = 0
-            winCheckVer = 0
+            winCheckVer = 0 
+            winCheckSE = 0
+            winCheckNE = 0
+            
+            
             // console.log('break')
             // console.log(newMatrix)
         }
         console.log('end')
+
+    }
+    $(' #checker ').on("click", function () {
+
+        winChecker()
+
+
     })
 
-    let testArray = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9]
-    ]
-    testArray
 
 })
