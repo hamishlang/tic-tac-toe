@@ -125,7 +125,6 @@ $(document).ready(function () {
             let horWin = (player) => {
                 
                 for (let ix = 0; ix < newMatrix[j].length; ix++) {
-                    
                     $(`#${j}-${ix}`).addClass('green')
                     
                 }
@@ -136,6 +135,20 @@ $(document).ready(function () {
                 for (let i2x = 0; i2x < rowsNum; i2x++) { 
                     $(`#${i2x}-${j}`).addClass('green')
                 } 
+            }
+
+            let southEWin = (player) => {
+                
+                for (let i2x = 0; i2x < rowsNum; i2x++) { 
+                    $(`#${i2x}-${i2x}`).addClass('green')
+                }
+            }
+
+            let northEWin = (player) => {
+                let northEast2 = rowsNum - 1
+                for (let i2x = 0; i2x < rowsNum; i2x++) { 
+                    $(`#${northEast2 - i2x}-${i2x}`).addClass('green')
+                }
             }
 
 
@@ -184,8 +197,17 @@ $(document).ready(function () {
                 if (newMatrix[i2][i2] === 2) {
                     winCheckSE += 1
 
+                    if (winCheckSE == winCount) {
+                        southEWin(1)
+                    }
+
+
                 } else if (newMatrix[i2][i2] === 3) {
                     winCheckSE += 10
+
+                    if (winCheckSE == winCount * 10) {
+                        southEWin(2)
+                    }
                 }
             }
 
@@ -194,9 +216,17 @@ $(document).ready(function () {
                 let northEast = rowsNum - 1
                 if (newMatrix[(northEast - i3)][i3] === 2) {
                     winCheckNE += 1
+                    if (winCheckNE == winCount) {
+                        northEWin(1)
+                    }
+
 
                 } else if (newMatrix[(northEast - i3)][i3] === 3) {
                     winCheckNE += 10
+
+                    if (winCheckNE == winCount *10) {
+                        northEWin(2)
+                    }
                 }
             }
             // console.log(winCheck)
@@ -222,7 +252,7 @@ $(document).ready(function () {
             // console.log('break')
             // console.log(newMatrix)
         }
-        console.log('end')
+        // console.log('end')
 
     }
     $(' #checker ').on("click", function () {
