@@ -7,7 +7,12 @@
     src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
     integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
     crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+
     <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 </head>
@@ -23,9 +28,9 @@
                 <input type="number" id="columns" name="columns"
                 min="3" max="100" value="3"><br><br> -->
                 <button type="submit" id="submit">Generate</button>
-                <button type="button" id="checker">CHECK</button>
+                <!-- <button type="button" id="checker">CHECK</button> -->
             </form><br>
-            <p id="turn">PLAYER 1 TURN</p><br>
+            <p id="turn">PLAYER <span id="playerTurn"></span> TURN</p><br>
             <div id="boardarea"></div>
         </div>
     </div>

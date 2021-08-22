@@ -5,6 +5,13 @@ $(document).ready(function () {
     let th = ''
     let tr = ''
 
+    function winner ()  {
+        confetti({
+        particleCount: 500,
+        spread: 90,
+        origin: { y: 0.6 }
+        });
+    }
     //table printer function
     let tablePrint = (col, row) => {
         tr = ''
@@ -51,6 +58,10 @@ $(document).ready(function () {
             }
         )
     }
+    let playerTurn = (player) => {
+        $('#playerTurn').html(player)
+    }
+    playerTurn(1)
 
 
     let click = () => {
@@ -70,8 +81,10 @@ $(document).ready(function () {
                 console.log('taken')
             } else if (xOrO === 'X') {
                 classMark(2, 'O')
+                playerTurn(2)
             } else if (xOrO === 'O') {
                 classMark(3, 'X')
+                playerTurn(1)
             }
             winChecker()
 
@@ -125,13 +138,9 @@ $(document).ready(function () {
             let horWin = (player) => {
                 
                 for (let ix = 0; ix < newMatrix[j].length; ix++) {
-                    let theItem = $(`#${j}-${ix}`)
-                    
-
-
-                    $(`#${j}-${ix}`).addClass('green')
-                    
+                    $(`#${j}-${ix}`).addClass('green') 
                 }
+                winner(player)
                 console.log(`player ${player} wins!`)
             }
 
@@ -139,20 +148,25 @@ $(document).ready(function () {
                 for (let i2x = 0; i2x < rowsNum; i2x++) { 
                     $(`#${i2x}-${j}`).addClass('green')
                 } 
+                winner(player)
             }
 
             let southEWin = (player) => {
                 
                 for (let i2x = 0; i2x < rowsNum; i2x++) { 
                     $(`#${i2x}-${i2x}`).addClass('green')
+                    
                 }
+                winner(player)
             }
 
             let northEWin = (player) => {
                 let northEast2 = rowsNum - 1
                 for (let i2x = 0; i2x < rowsNum; i2x++) { 
                     $(`#${northEast2 - i2x}-${i2x}`).addClass('green')
+                    
                 }
+                winner(player)
             }
 
 

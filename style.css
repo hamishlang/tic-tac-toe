@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: arial;
+    font-family: 'Urbanist', sans-serif;
     color: white;
     user-select: none;
     background: linear-gradient(89deg, #00c5ff, #8487ff, #00e496);
@@ -35,7 +35,7 @@ table {
     /* border: 3px solid rgba(255,255,255, 0.5); */
     /* border-collapse: collapse; */
     margin: 0 auto;
-
+    box-shadow: rgba(125, 135, 145, 0.3) 0px 8px 24px;
     /* width: 100%; */
 }
 th {
@@ -57,6 +57,9 @@ th:hover {
 h1 {
     color: white;
     display: inline-block;
+    font-weight: 200;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 form, p {
