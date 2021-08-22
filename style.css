@@ -1,28 +1,111 @@
-body {
-    font-family: arial;
-    user-select: none;
+* {
+    box-sizing: border-box;
 }
 
+body {
+    font-family: arial;
+    color: white;
+    user-select: none;
+    background: linear-gradient(89deg, #00c5ff, #8487ff, #00e496);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
 
 table {
     cursor: pointer;
+    /* border: 3px solid rgba(255,255,255, 0.5); */
+    /* border-collapse: collapse; */
+    margin: 0 auto;
+
+    /* width: 100%; */
 }
 th {
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255,255,255, 0.1);
+    border: 2px solid rgba(255,255,255, 0.0);
     font-size: 28px;
+    margin: 3px;
     
 }
 
+th:hover {
+    background-color: rgba(255,255,255, 0.9);
+
+}
+
+
+h1 {
+    color: white;
+    display: inline-block;
+}
+
+form, p {
+    display: inline-block;
+}
+.container {
+    text-align: center;
+}
+
+.content {
+    margin: 0 auto;
+}
 #turn {
     font-weight: 700;
 }
 
 .ghost {
-    color: #bebebe;
+    color: rgba(0, 2, 117, 0.5);
+    font-size: 34px;
 }
 
+
+.selected {
+    animation: text-pop 0.2s;
+    color: white;
+}
+@keyframes text-pop {
+    0% { transform: scale(1.5) }
+    100% { transform: scale(1)}
+}
+.selected:hover {
+    background-color: rgba(255,255,255, 0.1);
+}
+
+
+
 .green {
-    background-color: green;
+    background-color: rgb(170, 224, 170);
+    animation: color-change 0.5s;
+}
+
+.green:hover {
+    background-color: rgb(170, 224, 170); 
+}
+@keyframes color-change {
+    0% { transform: scale(1.7) }
+    100% { transform: scale(1)}
+}
+
+#boardarea {
+    display: inline-block;
 }

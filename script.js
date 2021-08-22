@@ -12,7 +12,7 @@ $(document).ready(function () {
             th = ''
             tr += `<tr id="row${t}">`
             for (let i = 0; i < col; i++) {
-                let thUniq = `<th row="${t}" col="${i}" id="${t}-${i}"></th>`
+                let thUniq = `<th row="${t}" col="${i}" id="${t}-${i}">&nbsp;</th>`
                 th += thUniq
             }
             tr += th
@@ -38,7 +38,7 @@ $(document).ready(function () {
         $(' th ').hover(
             function () {
                 let thisCell = ($(this).html())
-                if (thisCell === '') {
+                if (thisCell === '&nbsp;') {
                     $(this).html(`<span class="ghost">${xOrO}</span>`)
                 };
             },
@@ -46,7 +46,7 @@ $(document).ready(function () {
                 if ($(this).hasClass('selected')) {
                     return
                 } else {
-                    $(this).html(``);
+                    $(this).html(`&nbsp;`);
                 }
             }
         )
@@ -125,6 +125,10 @@ $(document).ready(function () {
             let horWin = (player) => {
                 
                 for (let ix = 0; ix < newMatrix[j].length; ix++) {
+                    let theItem = $(`#${j}-${ix}`)
+                    
+
+
                     $(`#${j}-${ix}`).addClass('green')
                     
                 }
