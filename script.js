@@ -1,16 +1,57 @@
 $(document).ready(function () {
+
+    $('.backdrop').hide()
+
+    $('#edit').on('click', function () {
+        $('.backdrop').fadeIn(200)
+        // $('.backdrop').show(200)
+
+    })
+    $('.x').on('click', function () {
+        $('.backdrop').fadeOut(200)
+        // $('.backdrop').show(200)
+
+    })
+    $('.popup').parent('.backdrop').not('.popup').on('click', function (e) {
+
+        if ($('.backdrop').is(e.target)) {
+        $('.backdrop').fadeOut(200)
+        console.log(e.target)
+        // $('.backdrop').show(200)
+
+    }})
+
     //table printing
     // let columnsNum = $('#columns').val()
     let rowsNum = $('#rows').val()
     let th = ''
     let tr = ''
+    let player1count = 0
+    let player2count = 0
+    let player1name = 'Player 1' 
+    let player2name = 'Player 2'  
 
-    function winner ()  {
+    // function playerPrinter (player)  {
+        
+    // }
+
+    function winner (player)  {
+        if (player == 1) {
+            player1count +=1
+            $(`#player1count`).html(player1count)
+        } else if (player == 2) {
+            player2count +=1
+            $(`#player2count`).html(player2count)
+        }
+
         confetti({
         particleCount: 500,
         spread: 90,
         origin: { y: 0.6 }
         });
+        // gameStarter().delay(800)
+        setTimeout(gameStarter, 2000)
+
     }
     //table printer function
     let tablePrint = (col, row) => {
@@ -37,6 +78,28 @@ $(document).ready(function () {
         return false
     })
 
+    function playerName (player)  {
+        player1name = $('#player1nameGet').val()
+        player2name = $('#player2nameGet').val()
+        $('#player1name').html(player1name)
+        $('#player2name').html(player2name)
+        console.log(player1name)
+        $('.backdrop').fadeOut(200)
+
+    }
+
+    $('#playerNameSelection').submit(function () {
+        playerName()
+        return false
+    })
+
+    $('#reseths').on('click', function () {
+        player1count = 0
+        player2count = 0
+        $(`#player1count`).html(player1count)
+        $(`#player2count`).html(player2count)
+    })
+
 
 
     let xOrO = 'X'
@@ -59,7 +122,13 @@ $(document).ready(function () {
         )
     }
     let playerTurn = (player) => {
-        $('#playerTurn').html(player)
+        if (player == 1) {
+            $('.p1section').addClass('turn')
+            $('.p2section').removeClass('turn')
+        } else if (player == 2) {
+            $('.p2section').addClass('turn')
+            $('.p1section').removeClass('turn')
+        }
     }
     playerTurn(1)
 

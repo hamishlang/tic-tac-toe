@@ -1,38 +1,66 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 
     <script src="script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
     <div class="container">
         <div class="content">
             <h1>Tic Tac Toe</h1><br>
             <form id="form">
-            <label for="rows">Board Size:</label>
-                <input type="number" id="rows" name="rows"
-                min="3" max="100" value="3"><br><br>
+                <label for="rows">Board Size:</label>
+                <input type="number" id="rows" name="rows" min="3" max="100" value="3"><br><br>
                 <!-- <label for="columns">Number of Columns (10-100):</label>
                 <input type="number" id="columns" name="columns"
                 min="3" max="100" value="3"><br><br> -->
-                <button type="submit" id="submit">Generate</button>
+                <button type="submit" id="submit">New game</button>
                 <!-- <button type="button" id="checker">CHECK</button> -->
             </form><br>
-            <p id="turn">PLAYER <span id="playerTurn"></span> TURN</p><br>
-            <div id="boardarea"></div>
+
+            <div id="boardarea"></div><br>
+            <div class="scoreboard">
+                <h3>SCORE</h3>
+                <div class="p1section"><span id="player1name">Player 1</span>: <span id="player1count">0</span></div>
+                <div class="p2section"><span id="player2name">Player 2</span>: <span id="player2count">0</span></div>
+                <br><img src="/assets/edit.png" alt="Edit" id="edit">
+            </div>
+        </div>
+    </div>
+    <div class="backdrop">
+        <div class="popup">
+            <div class="x">X</div>
+            <h1>Edit Names:</h1>
+
+            <form id="playerNameSelection" class="names">
+                <label for="player1name" class="names">Player 1 Name</label>
+                <input type="text" id="player1nameGet" name="player1name" maxlength="10" class="names" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" autocomplete="off"><br><br>
+                <label for="player2name" class="names">Player 2 Name</label>
+                <input type="text" id="player2nameGet" name="player2name" maxlength="10" class="names" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" autocomplete="off"><br><br>
+                <br>
+                <button type="submit" id="namesubmit" class="names">Apply</button><br><br>
+                <button type="button" id="reseths" class="names">Reset Scores</button>
+                <!-- <button type="button" id="checker">CHECK</button> -->
+            </form><br>
+
+
+
+
         </div>
     </div>
 </body>
+
 </html>
