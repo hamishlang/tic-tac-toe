@@ -39,9 +39,11 @@ $(document).ready(function () {
         if (player == 1) {
             player1count +=1
             $(`#player1count`).html(player1count)
+            $(`#winner`).html(player1name)
         } else if (player == 2) {
             player2count +=1
             $(`#player2count`).html(player2count)
+            $(`#winner`).html(player2name)
         }
 
         confetti({
@@ -50,7 +52,13 @@ $(document).ready(function () {
         origin: { y: 0.6 }
         });
         // gameStarter().delay(800)
+        $(`.winnertext`).fadeIn(400)
+        function winnerfade () {
+            $(`.winnertext`).fadeOut(400)
+
+        }
         setTimeout(gameStarter, 2000)
+        setTimeout(winnerfade, 2500)
 
     }
     //table printer function

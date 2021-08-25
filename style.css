@@ -84,10 +84,7 @@ button {
     -moz-appearance: none;
 }
 
-button:hover {
-    background: #0053ba;
 
-}
 
 button:focus {
     /* outline: 1px solid #fff; */
@@ -169,8 +166,10 @@ form, p {
 .scoreboard h3 {
     padding-top: 10px;
     margin-top: 0px;
-    margin-bottom: 1px;
-    font-weight: 100;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    border-bottom: 1px solid white;
 }
 
 
@@ -204,6 +203,7 @@ form, p {
         background-color: rgba(255, 255, 255, 0.6);
         text-align: center;
         color: black;
+       
 }
 
 .popup h1 {
@@ -241,5 +241,30 @@ form, p {
     padding: 3px 5px;
     border-radius: 4px;
     margin-top: 4px;
-    font-size: 20px;
+    font-size: 18px;
 }
+button:hover, #namesubmit:hover, #reseths:hover {
+    background: #008a5a;
+    color: white;
+
+}
+
+.winnertext {
+    z-index: 1000;
+    font-weight: 800;
+    font-size: 50px;
+    position: fixed;
+    transform: translate(-25%, 50%);
+    /* text-shadow: rgba(125, 135, 145, 0.5) 0px 5px 3px ; */
+    /* background-color: green; */
+
+
+    text-shadow: 3px 0px 7px rgba(21, 52, 81, 0.8), 
+    -3px 0px 7px rgba(21, 67, 81, 0.8), 
+    0px 4px 7px rgba(10, 15, 78, 0.8);
+}
+/* .block {
+    background-color: green;
+    cursor: none;
+    z-index: 10000;
+} */
