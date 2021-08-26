@@ -43,17 +43,19 @@
     </div>
     <div class="backdrop">
         <div class="popup">
-            <div class="x">X</div>
-            <h1>Edit Names:</h1>
+            <div class="x">X</div><br>
+            <h1>Edit Names:</h1><br>
 
             <form id="playerNameSelection" class="names">
-                <label for="player1name" class="names">Player 1 Name</label>
+                <label for="player1name" class="names">   Player 1 Name</label>
                 <input type="text" id="player1nameGet" name="player1name" maxlength="10" class="names" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" autocomplete="off"><br><br>
                 <label for="player2name" class="names">Player 2 Name</label>
                 <input type="text" id="player2nameGet" name="player2name" maxlength="10" class="names" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" autocomplete="off"><br><br>
                 <br>
                 <button type="submit" id="namesubmit" class="names">Apply</button><br><br>
-                <button type="button" id="reseths" class="names">Reset Scores</button>
+                <button type="button" id="reseths" class="names">Reset Scores</button><br>
+                <p class="byme">Created by Hamish Lang</p>
+                <div class="resetConfirmation">Scores Reset!</div>
                 <!-- <button type="button" id="checker">CHECK</button> -->
             </form><br>
 

@@ -1,28 +1,22 @@
 $(document).ready(function () {
-
+    $('.resetConfirmation').hide()
     $('.backdrop').hide()
 
     $('#edit').on('click', function () {
         $('.backdrop').fadeIn(200)
-        // $('.backdrop').show(200)
 
     })
     $('.x').on('click', function () {
         $('.backdrop').fadeOut(200)
-        // $('.backdrop').show(200)
-
     })
+
     $('.popup').parent('.backdrop').not('.popup').on('click', function (e) {
 
         if ($('.backdrop').is(e.target)) {
         $('.backdrop').fadeOut(200)
         console.log(e.target)
-        // $('.backdrop').show(200)
-
     }})
 
-    //table printing
-    // let columnsNum = $('#columns').val()
     let rowsNum = $('#rows').val()
     let th = ''
     let tr = ''
@@ -31,11 +25,9 @@ $(document).ready(function () {
     let player1name = 'Player 1' 
     let player2name = 'Player 2'  
 
-    // function playerPrinter (player)  {
-        
-    // }
-
     function winner (player)  {
+        $(' th ').addClass('no')
+        $(' th ').unbind()
         if (player == 1) {
             player1count +=1
             $(`#player1count`).html(player1count)
@@ -45,20 +37,18 @@ $(document).ready(function () {
             $(`#player2count`).html(player2count)
             $(`#winner`).html(player2name)
         }
-
         confetti({
-        particleCount: 500,
-        spread: 90,
-        origin: { y: 0.6 }
+            particleCount: 500,
+            spread: 90,
+            origin: { y: 0.6 }
         });
-        // gameStarter().delay(800)
         $(`.winnertext`).fadeIn(400)
         function winnerfade () {
-            $(`.winnertext`).fadeOut(400)
+            $(`.winnertext`).fadeOut(200)
 
         }
         setTimeout(gameStarter, 2000)
-        setTimeout(winnerfade, 2500)
+        setTimeout(winnerfade, 2000)
 
     }
     //table printer function
@@ -86,7 +76,7 @@ $(document).ready(function () {
         return false
     })
 
-    function playerName (player)  {
+    function playerName ()  {
         player1name = $('#player1nameGet').val()
         player2name = $('#player2nameGet').val()
         $('#player1name').html(player1name)
@@ -106,6 +96,7 @@ $(document).ready(function () {
         player2count = 0
         $(`#player1count`).html(player1count)
         $(`#player2count`).html(player2count)
+        $('.resetConfirmation').fadeIn(400).delay(400).fadeOut(500)
     })
 
 
@@ -143,17 +134,14 @@ $(document).ready(function () {
 
     let click = () => {
         $(' th ').on("click", function () {
-
             let classMark = (point, letter) => {
                 newMatrix[thisRow][thisCol] = point
                 $(this).html(`<span class="mark">${xOrO}</span>`)
                 $(this).addClass(`selected`)
                 xOrO = letter
-            }
-
+            };
             let thisCol = $(this).attr('col')
-            let thisRow = $(this).attr('row')
-
+            let thisRow = $(this).attr('row');
             if (newMatrix[thisRow][thisCol] === 2 || newMatrix[thisRow][thisCol] === 3) {
                 console.log('taken')
             } else if (xOrO === 'X') {
@@ -164,9 +152,7 @@ $(document).ready(function () {
                 playerTurn(1)
             }
             winChecker()
-
-            // console.log(newMatrix)
-        })
+        });
     }
 
     let newMatrix = []
