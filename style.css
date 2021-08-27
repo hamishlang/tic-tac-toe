@@ -60,6 +60,7 @@ h1 {
     font-weight: 200;
     letter-spacing: 1px;
     text-transform: uppercase;
+    font-size: 36px;
 }
 
 
@@ -133,8 +134,6 @@ form, p {
     cursor: initial;
 }
 
-
-
 .green {
     background-color: rgb(170, 224, 170);
     animation: color-change 0.5s;
@@ -160,7 +159,8 @@ form, p {
     display: inline-block;
     padding: 10px 20px;
     margin-top: 20px;
-    min-width: 120px;
+    min-width: 150px;
+    min-height: 160px;
     box-shadow: rgba(125, 135, 145, 0.2) 0px 4px 12px;
 
 }
@@ -178,14 +178,9 @@ form, p {
     border-bottom: 1px solid white;
 }
 
-
-
 #edit {
     cursor: pointer;
 }
-
-
-
 
 .backdrop {
     backdrop-filter: blur(7px);
@@ -208,8 +203,7 @@ form, p {
         background-color: rgba(255, 255, 255, 0.6);
         box-shadow: rgba(125, 135, 145, 0.7) 0px 4px 12px;
         text-align: center;
-        color: black;
-       
+        color: black;    
 }
 
 .popup h1 {
@@ -232,13 +226,11 @@ form, p {
 .x {
     padding-right: 12px;
     padding-top: 9px;
-    /* margin-left: 95%; */
     color: rgb(170, 78, 78); 
     text-align: right;
     font-size: 25px;
     cursor: pointer;
     font-weight: 600;
-    /* display: inline-block; */
     float: right;
     z-index: 1000;
     transition: color .2s ease-in-out;
@@ -292,4 +284,8 @@ button:hover, #namesubmit:hover, #reseths:hover {
     color: rgba(138, 136, 136, 0.5);
     font-size: 12px;
     text-transform: uppercase;
+}
+
+.scorebox {
+    height: 70px;
 }

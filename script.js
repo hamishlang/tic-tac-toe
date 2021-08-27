@@ -44,7 +44,7 @@ $(document).ready(function () {
             origin: {
                 y: 0.6
             }
-        });
+        })
         $(`.winnertext`).fadeIn(400)
 
         function winnerfade() {
@@ -109,13 +109,13 @@ $(document).ready(function () {
                 let thisCell = ($(this).html())
                 if (thisCell === '&nbsp;') {
                     $(this).html(`<span class="ghost">${xOrO}</span>`)
-                };
+                }
             },
             function () {
                 if ($(this).hasClass('selected')) {
                     return
                 } else {
-                    $(this).html(`&nbsp;`);
+                    $(this).html(`&nbsp;`)
                 }
             }
         )
@@ -139,7 +139,7 @@ $(document).ready(function () {
                 $(this).html(`<span class="mark">${xOrO}</span>`)
                 $(this).addClass(`selected`)
                 xOrO = letter
-            };
+            }
             let thisCol = $(this).attr('col')
             let thisRow = $(this).attr('row');
             if (newMatrix[thisRow][thisCol] === 2 || newMatrix[thisRow][thisCol] === 3) {
@@ -152,7 +152,7 @@ $(document).ready(function () {
                 playerTurn(1)
             }
             winChecker()
-        });
+        })
     }
 
     let newMatrix = []
@@ -172,7 +172,6 @@ $(document).ready(function () {
         $('#boardarea').html(`<table class="board">` + tr + `</table>`)
         ghostLetter()
         matrixBuilder(rowsNum, rowsNum)
-        // console.log(newMatrix)
         click()
     }
     gameStarter()
@@ -180,14 +179,14 @@ $(document).ready(function () {
     let count = 0
     let winChecker = () => {
         let winCount = rowsNum
-        // console.log(winCount)
+
         let winCheckHor = 0
         let winCheckVer = 0
         let winCheckSE = 0
         let winCheckNE = 0
 
         for (let j = 0; j < newMatrix.length; j++) {
-            // let ix = 0
+
             // function for color change horizontel 
             let horWin = (player) => {
 
@@ -204,12 +203,10 @@ $(document).ready(function () {
                 }
                 winner(player)
             }
-
             let southEWin = (player) => {
 
                 for (let i2x = 0; i2x < rowsNum; i2x++) {
                     $(`#${i2x}-${i2x}`).addClass('green')
-
                 }
                 winner(player)
             }
@@ -218,7 +215,6 @@ $(document).ready(function () {
                 let northEast2 = rowsNum - 1
                 for (let i2x = 0; i2x < rowsNum; i2x++) {
                     $(`#${northEast2 - i2x}-${i2x}`).addClass('green')
-
                 }
                 winner(player)
             }
@@ -292,7 +288,4 @@ $(document).ready(function () {
             winCheckNE = 0
         }
     }
-    $(' #checker ').on("click", function () {
-        winChecker()
-    })
 })
