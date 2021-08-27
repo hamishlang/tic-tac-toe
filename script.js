@@ -13,37 +13,41 @@ $(document).ready(function () {
     $('.popup').parent('.backdrop').not('.popup').on('click', function (e) {
 
         if ($('.backdrop').is(e.target)) {
-        $('.backdrop').fadeOut(200)
-        console.log(e.target)
-    }})
+            $('.backdrop').fadeOut(200)
+            console.log(e.target)
+        }
+    })
 
     let rowsNum = $('#rows').val()
     let th = ''
     let tr = ''
     let player1count = 0
     let player2count = 0
-    let player1name = 'Player 1' 
-    let player2name = 'Player 2'  
+    let player1name = 'Player 1'
+    let player2name = 'Player 2'
 
-    function winner (player)  {
+    function winner(player) {
         $(' th ').addClass('no')
         $(' th ').unbind()
         if (player == 1) {
-            player1count +=1
+            player1count += 1
             $(`#player1count`).html(player1count)
             $(`#winner`).html(player1name)
         } else if (player == 2) {
-            player2count +=1
+            player2count += 1
             $(`#player2count`).html(player2count)
             $(`#winner`).html(player2name)
         }
         confetti({
             particleCount: 500,
             spread: 90,
-            origin: { y: 0.6 }
+            origin: {
+                y: 0.6
+            }
         });
         $(`.winnertext`).fadeIn(400)
-        function winnerfade () {
+
+        function winnerfade() {
             $(`.winnertext`).fadeOut(200)
 
         }
@@ -76,7 +80,7 @@ $(document).ready(function () {
         return false
     })
 
-    function playerName ()  {
+    function playerName() {
         player1name = $('#player1nameGet').val()
         player2name = $('#player2nameGet').val()
         $('#player1name').html(player1name)
@@ -98,11 +102,7 @@ $(document).ready(function () {
         $(`#player2count`).html(player2count)
         $('.resetConfirmation').fadeIn(400).delay(400).fadeOut(500)
     })
-
-
-
     let xOrO = 'X'
-
     let ghostLetter = () => {
         $(' th ').hover(
             function () {
@@ -120,6 +120,7 @@ $(document).ready(function () {
             }
         )
     }
+
     let playerTurn = (player) => {
         if (player == 1) {
             $('.p1section').addClass('turn')
@@ -130,7 +131,6 @@ $(document).ready(function () {
         }
     }
     playerTurn(1)
-
 
     let click = () => {
         $(' th ').on("click", function () {
@@ -167,8 +167,6 @@ $(document).ready(function () {
             newMatrix.push(innMatrix)
         }
     }
-
-
     let gameStarter = () => {
         tablePrint(rowsNum, rowsNum)
         $('#boardarea').html(`<table class="board">` + tr + `</table>`)
@@ -177,12 +175,9 @@ $(document).ready(function () {
         // console.log(newMatrix)
         click()
     }
-
     gameStarter()
-
     let x = 2
     let count = 0
-
     let winChecker = () => {
         let winCount = rowsNum
         // console.log(winCount)
@@ -190,64 +185,55 @@ $(document).ready(function () {
         let winCheckVer = 0
         let winCheckSE = 0
         let winCheckNE = 0
-        // let j = 0
-        
-        
-
 
         for (let j = 0; j < newMatrix.length; j++) {
             // let ix = 0
             // function for color change horizontel 
             let horWin = (player) => {
-                
+
                 for (let ix = 0; ix < newMatrix[j].length; ix++) {
-                    $(`#${j}-${ix}`).addClass('green') 
+                    $(`#${j}-${ix}`).addClass('green')
                 }
                 winner(player)
                 console.log(`player ${player} wins!`)
             }
 
             let vertWin = (player) => {
-                for (let i2x = 0; i2x < rowsNum; i2x++) { 
+                for (let i2x = 0; i2x < rowsNum; i2x++) {
                     $(`#${i2x}-${j}`).addClass('green')
-                } 
+                }
                 winner(player)
             }
 
             let southEWin = (player) => {
-                
-                for (let i2x = 0; i2x < rowsNum; i2x++) { 
+
+                for (let i2x = 0; i2x < rowsNum; i2x++) {
                     $(`#${i2x}-${i2x}`).addClass('green')
-                    
+
                 }
                 winner(player)
             }
 
             let northEWin = (player) => {
                 let northEast2 = rowsNum - 1
-                for (let i2x = 0; i2x < rowsNum; i2x++) { 
+                for (let i2x = 0; i2x < rowsNum; i2x++) {
                     $(`#${northEast2 - i2x}-${i2x}`).addClass('green')
-                    
+
                 }
                 winner(player)
             }
 
-
-
             // horizontal checker
             for (let i = 0; i < newMatrix[j].length; i++) {
-                
+
                 if (newMatrix[j][i] === 2) {
                     winCheckHor += 1
-
                     if (winCheckHor == winCount) {
                         //PLAYER ONE WIN HOR
                         horWin(1)
-                    } 
-
+                    }
                 } else if (newMatrix[j][i] === 3) {
                     winCheckHor += 10
-
                     if (winCheckHor == winCount * 10) {
                         horWin(2)
                     }
@@ -255,18 +241,13 @@ $(document).ready(function () {
             }
             // vertical checker
             for (let i2 = 0; i2 < rowsNum; i2++) {
-
                 if (newMatrix[i2][j] === 2) {
                     winCheckVer += 1
-
-
                     if (winCheckVer == winCount) {
-                    vertWin(1)
-                }
-
+                        vertWin(1)
+                    }
                 } else if (newMatrix[i2][j] === 3) {
                     winCheckVer += 10
-
                     if (winCheckVer == winCount * 10) {
                         vertWin(2)
                     }
@@ -274,24 +255,18 @@ $(document).ready(function () {
             }
             // South East checker
             for (let i2 = 0; i2 < rowsNum; i2++) {
-
                 if (newMatrix[i2][i2] === 2) {
                     winCheckSE += 1
-
                     if (winCheckSE == winCount) {
                         southEWin(1)
                     }
-
-
                 } else if (newMatrix[i2][i2] === 3) {
                     winCheckSE += 10
-
                     if (winCheckSE == winCount * 10) {
                         southEWin(2)
                     }
                 }
             }
-
             // NORTH East checker
             for (let i3 = 0; i3 < rowsNum; i3++) {
                 let northEast = rowsNum - 1
@@ -300,48 +275,24 @@ $(document).ready(function () {
                     if (winCheckNE == winCount) {
                         northEWin(1)
                     }
-
-
                 } else if (newMatrix[(northEast - i3)][i3] === 3) {
                     winCheckNE += 10
-
-                    if (winCheckNE == winCount *10) {
+                    if (winCheckNE == winCount * 10) {
                         northEWin(2)
                     }
                 }
             }
-            // console.log(winCheck)
-            // if (winCheckHor == winCount) {
-
-
-
-            // }
             if (winCheckHor == winCount || winCheckVer == winCount || winCheckSE == winCount || winCheckNE == winCount) {
                 // console.log('player 1 wins')
-            } else if (winCheckHor === (winCount) * 10 || winCheckVer === (winCount) * 10 || winCheckSE === (winCount) * 10 || winCheckNE == (winCount) * 10) {
-                // console.log('player 2 wins')
-            }
-            // console.log('Hor: ' + winCheckHor + ' Ver: ' + winCheckVer + ' SE: ' + winCheckSE + ' WINCOUNT' + winCount)
-            // console.log('rowsNum' + rowsNum)
+            } else if (winCheckHor === (winCount) * 10 || winCheckVer === (winCount) * 10 || winCheckSE === (winCount) * 10 || winCheckNE == (winCount) * 10) {}
 
             winCheckHor = 0
-            winCheckVer = 0 
+            winCheckVer = 0
             winCheckSE = 0
             winCheckNE = 0
-            
-            
-            // console.log('break')
-            // console.log(newMatrix)
         }
-        // console.log('end')
-
     }
     $(' #checker ').on("click", function () {
-
         winChecker()
-
-
     })
-
-
 })
